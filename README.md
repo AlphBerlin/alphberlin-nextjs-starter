@@ -1,139 +1,179 @@
-![image](https://github.com/michaeltroya/supa-next-starter/assets/38507347/2ea40874-98de-49ec-ab6a-74c816e6ca22)
+⚡ AlphBerlin Next.js + Supabase + Prisma + i18n Starter Kit ⚡
+==========================================
 
-<h1 align="center">⚡ SupaNext Starter Kit ⚡</h1>
-
-<p align="center">
- The Last Next.js and Supabase Starter You Will Ever Need
-</p>
-
-<div align="center">
-
-<img alt="GitHub License" src="https://img.shields.io/github/license/michaeltroya/supa-next-starter">
-
-  <a href="https://twitter.com/intent/follow?screen_name=michaeltroya_">
-   <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/michaeltroya_">
-  </a>
-</div>
-
-<div align="center">
-  <sub>Created by <a href="https://twitter.com/michaeltroya_">Michael Troya</a>
-</div>
-
-<br/>
+> **The last Next.js & Supabase starter you’ll ever need.**
 
 <p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#documentation"><strong>Documentation</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
+  <a href="https://github.com/AlphBerlin/alphberlin-nextjs-starter/actions"><img src="https://img.shields.io/github/actions/workflow/status/AlphBerlin/alphberlin-nextjs-starter/ci.yml?branch=main" alt="CI status" /></a>
+  <a href="https://github.com/sponsors/AlphBerlin"><img src="https://img.shields.io/badge/❤️-Sponsor-blue" alt="Sponsor" /></a>
 </p>
-<br/>
+
+<p align="center">
+  Created by <a href="https://twitter.com/ajithberlin">AlphBerlin</a>
+</p>
+
+---
+
+## 📋 Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Prisma Setup & Seeding](#prisma-setup--seeding)
+- [Versioned Seed Tasks](#versioned-seed-tasks)
+- [Scripts](#scripts)
+- [Paths & Aliases](#paths--aliases)
+- [Showcase](#showcase)
+- [Feedback & Issues](#feedback--issues)
+- [License](#license)
+
+---
 
 ## Features
 
-- ⚡️ Next.js 14 (App Router)
-- 💚 Supabase w/ supabase-ssr - Works across the entire [Next.js](https://nextjs.org) stack (App Router, Pages Router, Client, Server, Middleware, It just works!)
-- ⚛️ React 18
-- ⛑ TypeScript
-- 📦 [pnpm](https://pnpm.io/) - Fast, disk space efficient package manager
-- 🎨 [Tailwind](https://tailwindcss.com/)
-- 🔌 [shadcn/ui](https://ui.shadcn.com/) - Beautifully designed components that you can copy and paste into your apps.
-- 🧪 Jest w/SWC + React Testing Library - Unit tests for all of your code.
-- 🎛️ [MSW](https://mswjs.io/)v2 - Intercept requests inside your tests (set up for testing only)
-- 🪝[TanStackQuery](https://tanstack.com/query/v5)v5 - The best way to fetch data on the client
-- 📏 ESLint — To find and fix problems in your code
-- 💖 Prettier — Code Formatter for consistent style
-- 🐶 Husky — For running scripts before committing
-- 🚫 lint-staged — Run ESLint and Prettier against staged Git files
-- 👷 Github Actions — Run Type Checks, Tests, and Linters on Pull Requests
-- 🗂 Path Mapping — Import components or images using the `@` prefix
-- ⚪⚫ Dark mode - Toggle theme modes with [next-themes](https://github.com/pacocoursey/next-themes)
-- ✨ Next Top Loader - Render a pleasent top loader on navigation with [nextjs-toploader](https://github.com/TheSGJ/nextjs-toploader)
-- 🔋 Lots Extras - Next Bundle Analyzer, Vercel Analytics, Vercel Geist Font
+- ⚡️ Next.js 15 (App Router)
+- 💚 Supabase w/ supabase-ssr (works with App Router, Pages Router, Client, Server, Middleware)
+- ⚛️ React 18 + TypeScript
+- 📦 pnpm (fast, disk‑space efficient)
+- 🎨 Tailwind CSS + [shadcn/ui](https://ui.shadcn.com/)
+- 🧪 Jest w/ SWC & React Testing Library
+- 🎛️ MSW v2 for API mocking in tests
+- 🪝 TanStack Query v5 for client data fetching
+- 📏 ESLint & Prettier for code quality
+- 🐶 Husky & lint-staged for pre-commit checks
+- 👷 GitHub Actions for CI (type checks, tests, linters)
+- 🗂 Path mapping (import @/components, @/public/images, etc.)
+- 🌗 Dark mode toggle with next-themes
+- ✨ Next Top Loader for navigation
+- 📊 Next Bundle Analyzer + Vercel Analytics
+- 🔌 Prisma ORM & i18n configs
 
-## Clone and run locally
+---
 
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
+## Getting Started
 
-2. Create a Next.js app using the Supabase Starter template npx command
+### 1. Create a Supabase project
 
-   ```bash
-   pnpm create next-app -e https://github.com/michaeltroya/supa-next-starter
-   # or
-   npx create-next-app -e https://github.com/michaeltroya/supa-next-starter
+- Go to the [Supabase dashboard](https://app.supabase.com) and create a new project.
+
+### 2. Scaffold your app
+
+```bash
+pnpm create next-app -e https://github.com/AlphBerlin/alphberlin-nextjs-starter my-app
+# or
+npx create-next-app -e https://github.com/AlphBerlin/alphberlin-nextjs-starter my-app
+cd my-app
+```
+
+### 3. Environment variables
+
+Rename `.env.local.example` to `.env.local` and fill in:
+
+```dotenv
+NEXT_PUBLIC_SUPABASE_URL=<your supabase URL>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<your anon key>
+DATABASE_URL=<your database connection string>
+```
+
+### 4. Push your Prisma schema
+
+```bash
+npx prisma db push
+```
+
+### 5. Run database seed
+
+```bash
+pnpm prisma seed
+```
+
+### 6. Start development server
+
+```bash
+pnpm run dev
+# now browse http://localhost:3000
+```
+
+> See [Supabase local development docs](https://supabase.com/docs/guides/getting-started/local-development).
+
+---
+
+## Prisma Setup & Seeding
+
+1. **Schema migrations**: define models in `prisma/schema.prisma`.
+2. **Push schema**: `npx prisma db push` to sync your database without migrations.
+3. **Seed scripts**: implement your seed logic in `prisma/seed.ts`.
+4. **Run seeds**: `pnpm prisma seed` executes `seed.ts` and any registered seed tasks.
+
+---
+
+## Versioned Seed Tasks
+
+For more control and incremental data setup, you can define versioned seeds:
+
+1. Create a new seed task in `prisma/seeds/`:
+
+   ```ts
+   // prisma/seeds/MyFeatureSeed.ts
+   import { BaseSeedTask } from '../utils/BaseSeedTask';
+
+   export default class MyFeatureSeed extends BaseSeedTask {
+     static version = '1.2';
+
+     async run() {
+       // write your seeding logic here
+     }
+   }
    ```
 
-3. Use `cd` to change into the app's directory
+2. Ensure your `seed.ts` loader picks up all classes extending `BaseSeedTask` and runs them in version order.
 
-   ```bash
-   cd name-of-new-app
-   ```
+3. Each task’s `static version` defines its semantic version (e.g., `1.0`, `1.1`, `1.2`).
 
-4. Rename `.env.local.example` to `.env.local` and update the following:
+---
 
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=[INSERT SUPABASE PROJECT API ANON KEY]
-   ```
+## Scripts
 
-   Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` can be found in [your Supabase project's API settings](https://app.supabase.com/project/_/settings/api)
+| Command           | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| `pnpm dev`        | Development server at `http://localhost:3000`           |
+| `pnpm build`      | Production build                                        |
+| `pnpm start`      | Run production build                                    |
+| `pnpm type-check` | TypeScript validation                                   |
+| `pnpm lint`       | Run ESLint on `src/`                                     |
+| `pnpm format`     | Run Prettier to format files                            |
+| `pnpm format-check` | Check formatting with Prettier                        |
+| `pnpm test`       | Run all Jest tests                                      |
+| `pnpm analyze`    | Build & launch bundle analyzer                         |
 
-5. You can now run the Next.js local development server:
+---
 
-   ```bash
-   pnpm run dev
-   ```
+## Paths & Aliases
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+Use the `@` prefix for cleaner imports:
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+```ts
+import { Button } from '@/components/ui/Button';
+import logo from '@/public/logo.png';
+```
+
+---
 
 ## Showcase
 
-Websites started using this template:
+Built with this starter:
 
-- [mainspring.pro](https://www.mainspring.pro/)
-- [Add yours](https://github.com/michaeltroya/supa-next-starter/edit/main/README.md)
+- More? Add yours by editing [README.md](https://github.com/AlphBerlin/alphberlin-nextjs-starter/edit/main/README.md)
 
-# Documentation
+---
 
-### Requirements
+## Feedback & Issues
 
-- Node.js >= 18.17.0
-- pnpm 8
+Found a bug or want a new feature? File an issue:
+https://github.com/AlphBerlin/alphberlin-nextjs-starter/issues
 
-### Scripts
-
-- `pnpm dev` — Starts the application in development mode at `http://localhost:3000`.
-- `pnpm build` — Creates an optimized production build of your application.
-- `pnpm start` — Starts the application in production mode.
-- `pnpm type-check` — Validate code using TypeScript compiler.
-- `pnpm lint` — Runs ESLint for all files in the `src` directory.
-- `pnpm format-check` — Runs Prettier and checks if any files have formatting issues.
-- `pnpm format` — Runs Prettier and formats files.
-- `pnpm test` — Runs all the jest tests in the project.
-- `pnpm test:ci` — Runs all the jest tests in the project, Jest will assume it is running in a CI environment.
-- `pnpm analyze` — Builds the project and opens the bundle analyzer.
-
-### Paths
-
-TypeScript is pre-configured with custom path mappings. To import components or files, use the `@` prefix.
-
-```tsx
-import { Button } from '@/components/ui/Button'
-
-// To import images or other files from the public folder
-import avatar from '@/public/avatar.png'
-```
-
-### Switch to Yarn/npm
-
-This starter uses pnpm by default, but this choice is yours. If you'd like to switch to Yarn/npm, delete the `pnpm-lock.yaml` file, install the dependencies with Yarn/npm, change the CI workflow, and Husky Git hooks to use Yarn/npm commands.
+---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
+Apache 2.0 © [AlphBerlin](https://github.com/AlphBerlin)
 
-## Feedback and issues
-
-Please file feedback and issues [here](https://github.com/michaeltroya/supa-next-starter/issues).
